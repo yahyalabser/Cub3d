@@ -1,0 +1,10 @@
+NO ./north
+SO ./south
+WE ./west
+EA ./east
+F 220,100,0
+C 225,30,0
+
+1111 
+10N01
+1111  
