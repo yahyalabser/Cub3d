@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRC = main.c parse.c utils_str.c free_utils.c map.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c 
 

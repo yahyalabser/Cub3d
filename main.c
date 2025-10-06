@@ -30,5 +30,7 @@ int main(int argc, char **argv)
    }
    else
       exit_error("Error:\nno map specified.\n");
+   
+   free_all(&config);
    return (EXIT_SUCCESS);
 }

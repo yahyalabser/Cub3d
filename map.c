@@ -78,7 +78,7 @@ int	validate_map(t_str *map)
          char c = arr[i][j];
          if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
             players++;
-         if (c != '1' && c != ' ' && c != '\r' && c != '\t') // ?????
+         if (c != '1' && c != ' ' && c != '\r' && c != '\t')
          {
             if (i == 0 || i == count-1 || j == 0 || j == max-1 ||
                arr[i-1][j] == ' ' || arr[i+1][j] == ' ' ||
