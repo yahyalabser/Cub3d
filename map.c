@@ -60,7 +60,7 @@ int	validate_map(t_str *map)
       if (len > 0 && tmp->content[len - 1] == '\n') len -=2;
 		arr[i] = malloc(max+1);
 		if (!arr[i]) { free_array(arr);return 0; }
-		int len = ft_strlen(tmp->content);
+		// int len = ft_strlen(tmp->content);
 		ft_memset(arr[i], ' ', max);
 		ft_memcpy(arr[i], tmp->content, len);
 		arr[i][max] = 0;

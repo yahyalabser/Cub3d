@@ -13,8 +13,8 @@ static void init_config(t_config *config)
    config->ea_texture = NULL;
    config->we_texture = NULL;
    config->so_texture = NULL;
-   config->floor_color = 0;
-   config->ceiling_color = 0;
+   config->floor_color = -1;
+   config->ceiling_color = -1;
    config->map = NULL;
 }
 
