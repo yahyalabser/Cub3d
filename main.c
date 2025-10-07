@@ -16,6 +16,9 @@ static void init_config(t_config *config)
    config->floor_color = -1;
    config->ceiling_color = -1;
    config->map = NULL;
+   config->map_array = NULL;
+   config->map_height = 0;
+   config->map_width = 0;
 }
 
 int main(int argc, char **argv)

@@ -16,31 +16,34 @@ typedef struct	s_str
 
 typedef struct s_config
 {
-   // Chemins des textures
-   char *no_texture; // Nord
-   char *so_texture; // Sud
-   char *we_texture; // Ouest
-   char *ea_texture; // Est
-
-   // Couleurs sol et plafond (format RGB, généralement 0xRRGGBB)
+   char *no_texture;
+   char *so_texture;
+   char *we_texture;
+   char *ea_texture;
    int floor_color;
    int ceiling_color;
-
-   // Map 2D (tableau de chaînes)
    t_str *map;
+   char **map_array;
+   int map_width;
+   int map_height; 
 } t_config;
 
 //parse
 int parse_file(char *file, t_config *config);
-void	parse_line(char *line, t_config *config, int *map_started);
-int	ft_strncmp(char *s1, char *s2, size_t n);
-char	*ft_strdup(char *src);
+
+// parse line 
+int	parse_identifier(char *line, int i, t_config *config);
+
+// parse color
+int	parse_color(char *line);
 
 // utils str
 int	ft_strlen(char *s);
 int ft_strcmp(char *s1, char *s2);
-void	*ft_memset(char *b, int c, size_t len);
+int	ft_strncmp(char *s1, char *s2, size_t n);
+char	*ft_strdup(char *src);
 void	*ft_memcpy(char *dst, char *src, size_t n);
+void	*ft_memset(char *b, int c, size_t len);
 
 // error
 int exit_error(char *mssg);
@@ -52,7 +55,7 @@ void	free_config(t_config *config);
 void	free_all(t_config *config);
 
 // map 
-int	validate_map(t_str *map);
-int	is_map_line(const char *line);
+int	validate_map(t_config *config);
+int	is_map_line(char *line);
 
 #endif

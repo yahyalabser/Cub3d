@@ -2,9 +2,12 @@
 
 void	free_array(char **arr)
 {
+	int	i;
+
 	if (!arr)
-      return;
-	for (int i = 0; arr[i]; i++)
+		return;
+	i = -1;
+	while (arr[++i])
 		free(arr[i]);
 	free(arr);
 }
@@ -33,5 +36,14 @@ void	free_config(t_config *config)
 void	free_all(t_config *config)
 {
 	free_config(config);
-	free_map(config->map);
+	if (config->map)
+	{
+		free_map(config->map);
+		config->map = NULL;
+	}
+	if (config->map_array)
+	{
+		free_array(config->map_array);
+		config->map_array = NULL;
+	}
 }

@@ -63,13 +63,19 @@ static char	*creat_array(char *str, int fd)
 	tmp = malloc((size_t)BUFFER_SIZE + 1);
 	if (!tmp)
 		return (NULL);
-	tmp[BUFFER_SIZE] = '\0';
-	read_count = read(fd, tmp, BUFFER_SIZE);
+	tmp[0] = '\0';
 	if (!str)
 		str = ft_init(NULL);
+	read_count = read(fd, tmp, BUFFER_SIZE);
 	while (read_count > 0)
 	{
+		tmp[read_count] = '\0';
 		str = ft_strjoin(str, tmp, read_count);
+		if (!str)
+		{
+			free(tmp);
+			return (NULL);
+		}
 		if (found_newline(tmp))
 			break ;
 		read_count = read(fd, tmp, BUFFER_SIZE);

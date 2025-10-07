@@ -1,18 +1,17 @@
 #include "cub3d.h"
 
-int	is_map_line(const char *line)
+int	is_map_line(char *line)
 {
    int   i;
 
    if (!line)
       return 0;
-   i = 0;
+   i = -1;
 	while (line[++i])
 		if (line[i] == '1' || line[i] == '0' ||
 			line[i] == 'N' || line[i] == 'S' ||
 			line[i] == 'E' || line[i] == 'W')
 			return 1;
-      i++;
 	return 0;
 }
 
@@ -44,21 +43,20 @@ static int is_a_map(char **map)
 int	validate_map_content(char **arr, int rows, int cols)
 {
 	int	i;
-   int   j;
+	int   j;
 	int	players;
-   char  c;
 	
-   players = 0;
-   i = -1;
+	players = 0;
+	i = -1;
 	while (++i < rows)
 	{
       j = -1;
 		while (++j < cols)
 		{
-			c = arr[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (arr[i][j] == 'N' || arr[i][j] == 'S' ||
+				arr[i][j] == 'E' || arr[i][j] == 'W')
 				players++;
-			if (c != '1' && c != ' ' && c != '\0')
+			if (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\0')
 			{
 				if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1)
 					return (0);
@@ -120,25 +118,34 @@ static char	**create_map_array(t_str *map, int count, int max)
 	return (arr);
 }
 
-int	validate_map(t_str *map)
+int	validate_map(t_config *config)
 {
 	int   count = 0;
    int   max = 0;
    char  **arr;
    int   result;
 
-	calculate_dimensions(map, &count, &max);
+	calculate_dimensions(config->map, &count, &max);
 	if (count < 3 || max < 3)
 		return ( 0);
-	arr = create_map_array(map, count, max);
+	arr = create_map_array(config->map, count, max);
 	if (!arr)
-      return (0);
-   if (!is_a_map(arr))
-   {
-      free_array(arr);
-      return 0;
-   }
-   result = validate_map_content(arr, count, max);
-	free_array(arr);
+      	return (0);
+	if (!is_a_map(arr))
+	{
+    	free_array(arr);
+    	return 0;
+   	}
+   	result = validate_map_content(arr, count, max);
+	if (result == 1)
+	{
+		config->map_array = arr;
+		config->map_height = count;
+		config->map_width = max;
+		free_map(config->map);
+		config->map = NULL;
+	}
+	else
+		free_array(arr);
 	return (result);
 }
