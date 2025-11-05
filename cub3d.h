@@ -56,6 +56,25 @@ typedef struct s_player
 	double	fov;
 }	t_player;
 
+typedef struct s_ray
+{
+	double	angle;   // angle du rayon
+	double	dir_x;   // cos(angle)
+	double	dir_y;   // sin(angle)
+
+	// DDA
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	perp_dist;
+}	t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -94,6 +113,12 @@ int		render_frame(t_game *g);
 void	img_pixel_put(t_img *img, int x, int y, int color);
 int		exit_error(char *mssg);
 
+double	compute_ray_angle(t_game *g, int x);
+void	init_ray_direction(t_ray *ray, t_game *g, int x);
+void	cast_rays(t_game *g);
+void	init_dda(t_ray *ray, t_game *g);
+void	perform_dda(t_ray *ray, t_game *g);
+void	compute_perp_dist(t_ray *ray, t_game *g);
 
 
 

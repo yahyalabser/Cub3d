@@ -91,11 +91,35 @@ static void	clear_background(t_game *g)
 	}
 }
 
+// static void	draw_center_dot(t_game *g)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	size;
+// 	int	color;
+
+// 	size = 4;           // demi-taille du carré (4 → carré de 8x8)
+// 	color = 0xFF0000;   // rouge
+
+// 	y = HEIGHT / 2 - size;
+// 	while (y <= HEIGHT / 2 + size)
+// 	{
+// 		x = WIDTH / 2 - size;
+// 		while (x <= WIDTH / 2 + size)
+// 		{
+// 			img_pixel_put(&g->img, x, y, color);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+
 
 int	render_frame(t_game *g)
 {
 	clear_background(g);
-	// mwn b3ed o netal9 ray
+	cast_rays(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 	return (0);
 }

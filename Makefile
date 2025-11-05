@@ -15,7 +15,8 @@ PARSING_SRCS = \
 	parsing/parse_line.c
 
 RAYCASTING_SRCS = \
-	raycasting/raycasting.c 
+	raycasting/raycasting_utils.c \
+	raycasting/raycasting_utils1.c
 
 SRCS = \
 	main.c \
