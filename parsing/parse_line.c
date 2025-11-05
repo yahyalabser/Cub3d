@@ -31,7 +31,7 @@ static void parse_texture(int len, char **texture_ptr, char *line, int i)
     char    *path;
 
 	if (*texture_ptr != NULL)
-		exit_error("Error:\ninvalid map\n");
+		exit_error("Error:\ninvalid map2\n");
     path = clean_path(line + i + len);
     if (!file_exists(path))
 	{

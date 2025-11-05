@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		exit_error("Error:\nno map specified.\n");
 	init_config(&game.config);
 	if (!parse_file(argv[1], &game.config))
-		exit_error("Error:\ninvalid map.\n");
+		exit_error("Error:\ninvalid map1.\n");
 	init_game(&game);
    // logique de reaycast men be3ed
 	mlx_loop_hook(game.mlx, render_frame, &game);
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 //       init_config(&config);
 //       if (!parse_file(argv[1], &config))
 //          exit_error("Error:\ninvalid map.\n");
+//       printf("%s\n", config.map_array[1]);
 //    }
 //    else
 //       exit_error("Error:\nno map specified.\n");
