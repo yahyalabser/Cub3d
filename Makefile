@@ -1,17 +1,40 @@
-NAME = cub3d
-CC = cc
-FLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+NAME  = cub3d
+CC    = cc
+FLAGS = -Wall -Wextra -Werror -g3  # -fsanitize=address
 
-SRC = main.c parse.c utils_str.c free_utils.c map.c parse_color.c parse_line.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c 
+MLX = -lmlx
+APPKIT = -framework AppKit
+OPENGL = -framework OpenGL
 
-OBJ = $(SRC:.c=.o)
+PARSING_SRCS = \
+	parsing/parse.c \
+	parsing/utils_str.c \
+	parsing/free_utils.c \
+	parsing/map.c \
+	parsing/parse_color.c \
+	parsing/parse_line.c
+
+RAYCASTING_SRCS = \
+	raycasting/raycasting.c 
+
+SRCS = \
+	main.c \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c \
+	$(PARSING_SRCS) \
+	$(RAYCASTING_SRCS)
+
+
+OBJ = $(SRCS:.c=.o)
+
+HEADERS = cub3d.h get_next_line/get_next_line.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(MLX) $(APPKIT) $(OPENGL) -o $(NAME)
 
-%.o: %.c cub3d.h
+%.o: %.c $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:

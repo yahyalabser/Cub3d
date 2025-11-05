@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static char *clean_path(char *path)
 {

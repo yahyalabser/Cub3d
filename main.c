@@ -21,19 +21,38 @@ static void init_config(t_config *config)
    config->map_width = 0;
 }
 
-int main(int argc, char **argv)
-{
-   t_config config;
 
-   if (argc == 2)
-   {
-      init_config(&config);
-      if (!parse_file(argv[1], &config))
-         exit_error("Error:\ninvalid map.\n");
-   }
-   else
-      exit_error("Error:\nno map specified.\n");
-   
-   free_all(&config);
-   return (EXIT_SUCCESS);
+int	main(int argc, char **argv)
+{
+	t_game	game;
+
+	if (argc != 2)
+		exit_error("Error:\nno map specified.\n");
+	init_config(&game.config);
+	if (!parse_file(argv[1], &game.config))
+		exit_error("Error:\ninvalid map.\n");
+	init_game(&game);
+   // logique de reaycast men be3ed
+	mlx_loop_hook(game.mlx, render_frame, &game);
+	mlx_loop(game.mlx);
+
+	//free_all(&game.config) remplacer dans close
+	return (EXIT_SUCCESS);
 }
+
+// int main(int argc, char **argv)
+// {
+//    t_config config;
+
+//    if (argc == 2)
+//    {
+//       init_config(&config);
+//       if (!parse_file(argv[1], &config))
+//          exit_error("Error:\ninvalid map.\n");
+//    }
+//    else
+//       exit_error("Error:\nno map specified.\n");
+   
+//    free_all(&config);
+//    return (EXIT_SUCCESS);
+// }

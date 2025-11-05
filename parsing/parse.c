@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	str_add_back(t_str **str, char *line)
 {
