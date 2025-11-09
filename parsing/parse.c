@@ -41,7 +41,7 @@ static void	handle_empty_line(char *line, t_config *config, int *map_started)
 	{
 		free(line);
 		free_all(config);
-		exit_error("Error:\ninvalid map\n");
+		exit_error("Error:\ninvalid map3\n");
 	}
 }
 
@@ -94,7 +94,7 @@ static void	check_config(t_config *config)
 	if (!config->map || !validate_map(config))
 	{
 		free_all(config);
-		exit_error("Error:\nInvalid map\n");
+		exit_error("Error:\nInvalid map4\n");
 	}
 }
 
