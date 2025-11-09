@@ -3,10 +3,20 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> // printf
+# include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
 # include "get_next_line/get_next_line.h"
+
+#define NUM_RAYS = 60
+#define FOV = 60 * (PI / 180)
+#define TILE_SIZE = 32
+
+
+#define TILE_SIZE 32
+#define WIN_W (50 * TILE_SIZE)
+#define WIN_H (20 * TILE_SIZE)
+
 
 typedef struct	s_str
 {
@@ -28,16 +38,10 @@ typedef struct s_config
    int map_height; 
 } t_config;
 
-//parse
 int parse_file(char *file, t_config *config);
-
-// parse line 
 int	parse_identifier(char *line, int i, t_config *config);
-
-// parse color
 int	parse_color(char *line);
 
-// utils str
 int	ft_strlen(char *s);
 int ft_strcmp(char *s1, char *s2);
 int	ft_strncmp(char *s1, char *s2, size_t n);

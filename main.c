@@ -21,19 +21,35 @@ static void init_config(t_config *config)
    config->map_width = 0;
 }
 
-int main(int argc, char **argv)
+// int main(int argc, char **argv)
+// {
+//    t_config config;
+
+//    if (argc == 2)
+//    {
+//       init_config(&config);
+//       if (!parse_file(argv[1], &config))
+//          exit_error("Error:\ninvalid map.\n");
+//    }
+//    else
+//       exit_error("Error:\nno map specified.\n");
+   
+//    free_all(&config); // a remplacer dans close window
+//    return (EXIT_SUCCESS);
+// }
+
+int main(int argc , char **argv)
 {
    t_config config;
-
-   if (argc == 2)
-   {
-      init_config(&config);
-      if (!parse_file(argv[1], &config))
-         exit_error("Error:\ninvalid map.\n");
-   }
-   else
+   if (argc !=2)
       exit_error("Error:\nno map specified.\n");
+   init_config(&config);
+   if (!parse_file(argv[1], &config))
+      exit_error("Error:\ninvalid map.\n");
    
-   free_all(&config);
-   return (EXIT_SUCCESS);
+   //int_app(&game)
+   // find player postion 
+   // create a map
+   return(EXIT_SUCCESS);
+   
 }
